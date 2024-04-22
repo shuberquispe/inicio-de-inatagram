@@ -1,0 +1,444 @@
+:root {
+    --bck-light-grey: #FAFAFA;
+    --links-base: #000;
+    --bck-login-expanded: #FFF;
+    --login-border-expanded: lightgrey;
+    --placeholder: #8E8E8E;
+    --input-border: lightgrey;
+    --input-border-outline: #a8a8a8;
+    --submit-font: #FFF;
+    --submit-enabled: rgb(0, 149, 246);
+    --submit-disabled: rgba(0, 149, 246, 0.3);
+    --link-register: dodgerblue;
+    --login-spacer: dimgrey;
+    --footer-text: lightslategray;
+}
+
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    background-color: var(--bck-light-grey);
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    min-height: 800px; /* stops divs bumping into each other*/
+}
+
+body {
+    background-color: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: sans-serif;
+}
+
+a {
+    background-color: inherit;
+    text-decoration: none;
+    color: var(--links-base);
+}
+
+/***********************************
+    ▼ Outside containers
+***********************************/
+
+.container {
+    background-color: inherit;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container .content-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/***********************************
+    ▼ Expanded left half (phones)
+***********************************/
+
+.container .content-container .left-column {
+    position: relative;
+    width: 450px;
+    height: 100%;
+    display: none;
+    background-image: url("https://i.ibb.co/1bxsBqG/phones.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position-y: 70px;
+}
+div.left-column img {
+    position: absolute;
+    width: 239px;
+    top: 168px;
+    left: 149px;
+    opacity: 1;
+    animation-name: img-fade;
+    animation-duration: 25s;
+    animation-iteration-count: infinite;
+}
+#img1 {
+    animation-delay: 2.5s;
+}
+#img2 {
+    animation-delay: 7.5s;
+}
+#img3 {
+    animation-delay: 12.5s;
+}
+#img4 {
+    animation-delay: 17.5s;
+}
+#img5 {
+    animation-delay: 22.5s;
+}
+@keyframes img-fade {
+    0% {
+        opacity: 1;
+    }
+    20% {
+        opacity: 0;
+    }
+    80% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+/***********************************
+    ▼ Right half (login + app)
+***********************************/
+
+.container .content-container .right-column {
+    background-color: inherit;
+    height: 100%;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/***********************************
+    ▼ Tolp half (login)
+***********************************/
+
+.top-section {
+    width: 100%;
+    background-color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+/***********************************
+    ▼ Logo
+***********************************/
+
+header .logo {
+    background-color: inherit;
+    width: 180px;
+    margin: 30px 0 25px;
+}
+
+/***********************************
+    ▼ Login form
+***********************************/
+
+.login {
+    background-color: inherit;
+    width: 250px;
+    margin: 0 40px;
+}
+
+.login .login-form-div form {
+    background-color: inherit;
+    display: flex;
+    flex-direction: column;
+}
+
+.login .login-form-div form input[type='text'],
+.login .login-form-div form input[type='password'] {
+    width: 100%;
+    line-height: 18px;
+    margin: 3px 0;
+    border: 1px solid var(--input-border);
+    border-radius: 3px;
+    padding: 14px 0 2px 8px;
+    font-size: 12px;
+}
+
+.login .login-form-div form input[type='text']:focus,
+.login .login-form-div form input[type='password']:focus {
+    outline: 0;
+    border: 1px solid var(--input-border-outline);
+}
+
+/**********************************************************
+    ▼ Input "placeholders"
+
+    Source: https://stackoverflow.com/a/35942748/1067293
+**********************************************************/
+
+.login-form-div {
+    position: relative;
+}
+
+.username-ph, .password-ph {
+    font-size: 12px;
+    color: var(--placeholder);
+    position: absolute;
+    pointer-events: none;
+    transition: 0.2s ease all;
+    left: 10px;
+}
+
+.username-ph {
+    top: 14px;
+}
+
+.password-ph {
+    top: 55px;
+}
+
+input:focus[id='username'] ~ .username-ph,
+input[id='username']:not(:focus):valid ~ .username-ph {
+    font-size: 9px;
+    height: 9px;
+    top: 7px;
+}
+
+input:focus[id='password'] ~ .password-ph,
+input[id='password']:not(:focus):valid ~ .password-ph {
+    font-size: 9px;
+    height: 9px;
+    top: 48px;
+}
+
+/***********************************
+    ▼ Submit button
+***********************************/
+
+.login .login-form-div form input[type='submit'] {
+    outline: 0;
+    border: none;
+    color: var(--submit-font);
+    font-size: 12px;
+    font-weight: bold;
+    padding: 8px;
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: var(--submit-disabled);
+}
+
+#login-form:valid input[type='submit'] {
+    background-color: var(--submit-enabled);
+}
+
+/***********************************
+    ▼ Login spacer
+***********************************/
+
+.login .login-spacer {
+    display: inherit;
+    background-color: inherit;
+    color: var(--login-spacer);
+    font-size: 11px;
+    font-weight: bold;
+    margin: 20px 0 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login .login-spacer div {
+    background-color: inherit;
+}
+
+.login .login-spacer .inline-border {
+    border-bottom: 1px solid var(--input-border);
+    width: 40%;
+    height: 0;
+}
+
+/***********************************
+    ▼ Facebook login
+***********************************/
+
+.login-facebook {
+    background-color: inherit;
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.facebook-text {
+    background-color: inherit;
+    background-image: url("https://i.ibb.co/M8gZtcZ/facebook-icon.png");
+    background-size: 15px;
+    background-repeat: no-repeat;
+    background-position-y: center;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 10px 0 10px 20px;
+    margin: 10px 0;
+}
+
+/***********************************
+    ▼ Recover
+***********************************/
+
+.login-forgot {
+    background-color: inherit;
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.login-forgot > p {
+    background-color: inherit;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+/***********************************
+    ▼ Register
+***********************************/
+
+.register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: inherit;
+    width: 350px;
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+.register > p {
+    background-color: inherit;
+    font-size: 14px;
+}
+
+.register > p > a {
+    background-color: inherit;
+    color: var(--link-register);
+    font-weight: bold;
+}
+
+/***********************************
+    ▼ Apps
+***********************************/
+
+.mobile-app > p {
+    text-align: center;
+    font-size: 14px;
+    margin: 10px 0 20px;
+}
+
+.mobile-app .stores {
+    display: flex;
+    justify-content: center;
+}
+
+.app-store, .google-play {
+    padding: 0 5px;
+}
+
+.mobile-app .stores div img {
+    max-width: 135px;
+}
+
+/***********************************
+    ▼ Footer
+***********************************/
+
+footer {
+    margin: 0 15px 40px;
+}
+
+.footer-divs {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-divs .footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.footer-divs .footer-links div {
+    font-size: 12px;
+    padding: 5px;
+}
+
+.footer-divs .footer-links div a {
+    color: var(--footer-text);
+}
+
+.footer-down {
+    font-family: sans-serif;
+    font-size: 12px;
+    color: var(--footer-text);
+}
+
+.footer-down select, .footer-down select:focus {
+    font-family: sans-serif;
+    font-size: 12px;
+    color: lightslategray;
+    border-width: 0;
+    margin-right: 15px;
+    min-width: 50px;
+    width: auto;
+    outline: none;
+}
+
+.footer-down {
+    text-align: center;
+}
+
+/***********************************
+    ▼ Media Queries!
+***********************************/
+
+@media only screen and (min-width: 436px) {
+    .top-section, header, .login-form-div, .register {
+        background-color: var(--bck-login-expanded);
+    }
+
+    .content-container .right-column .top-section{
+        margin-top: 100px;
+        border: 1px solid var(--login-border-expanded);
+    }
+
+    .register {
+        border: 1px solid var(--login-border-expanded);
+    }
+
+    .container .content-container .right-column {
+        justify-content: flex-start;
+    }
+}
+
+@media only screen and (min-width: 861px) {
+    .container .content-container .left-column {
+        display: block;
+    }
+}
